@@ -1,0 +1,74 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+.body {
+    z-index:1;
+    background: radial-gradient(
+        ellipse 75% 50%,
+        rgb(46, 128, 205),
+        rgb(13, 97, 100),
+        rgb(171, 0, 193));
+    background-size: 600% 600%;
+    width: 100%;
+    height: 100vh;
+    animation: animate 35s ease infinite;
+}
+
+@keyframes animate{
+    0%{
+        background-position: 0% 25%;
+    }
+    25%{
+        background-position: 15% 85%;
+    }
+    50%{
+        background-position: 25% 35%;
+    }
+    75%{
+        background-position: 55% 100%;
+    }
+    100%{
+        background-position: 0% 25%;
+    }
+}
+header {
+    display: flex;
+    justify-content: center;
+}
+aside{
+    display:flex;
+    justify-content: center;
+}
+.card {
+    background-color: rgba(254, 254, 254, 0.3);
+    border:5px solid red;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    width: 750px;
+    margin:auto;
+}
+
+div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+  }
+
+#showDaily {
+    display:flex;
+    justify-content: center;
+}
+
+.weekForecast {
+    margin: 10px;
+    padding: 10px;
+    border: 5px solid white;
+    background-color: rgba(254, 254, 254, 0.3);
+}
+
+.top {
+    background-color: rgb(122, 169, 210);
+}
+
