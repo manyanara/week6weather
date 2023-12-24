@@ -1,8 +1,11 @@
 *{
     padding:0;
     margin:0;
+    font-family: 'Comfortaa', sans-serif;
 }
-
+:root{
+    --textshadow: 1px 1px 2px rgb(255, 242, 1), 0 0 1em blue, 0 0 0.2em blue;
+}
 .body {
     z-index:1;
     background: radial-gradient(
@@ -40,15 +43,17 @@ header {
 aside{
     display:flex;
     justify-content: center;
+    line-height: 150%;
 }
 .card {
-    background-color: rgba(254, 254, 254, 0.3);
-    border:5px solid red;
+    background-color: rgba(254, 254, 254, 0.527);
     border-radius: 25px;
     display: flex;
     flex-direction: row;
-    width: 750px;
+    width: max-content;
     margin:auto;
+    margin-top: 10px;
+    padding: 20px;
 }
 
 div:nth-child(2) {
@@ -59,16 +64,44 @@ div:nth-child(2) {
 #showDaily {
     display:flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .weekForecast {
     margin: 10px;
-    padding: 10px;
-    border: 5px solid white;
-    background-color: rgba(254, 254, 254, 0.3);
+    padding: 15px;
+    background-color: rgba(254, 254, 254, 0.273);
+    width:max-content;
+    line-height: 200%;
+    text-align: left;
 }
 
 .top {
-    background-color: rgb(122, 169, 210);
+    /* background-color: rgb(122, 169, 210); */
+    height: 15vh;
+    background: linear-gradient(
+        /* ellipse 75% 50%, */
+        rgba(213, 56, 197, 0.4),
+        rgba(163, 0, 218, 0.4),
+        rgba(218, 196, 54, 0.4));
+    background-size: 600% 600%;
+    animation: animate 35s ease infinite;
+    width:50%;
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 40px;
+    padding-top: 20px;
+}
+.date {
+    color: rgb(212, 212, 202);
+    /* text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue; */
 }
 
+h1 {
+    color: rgb(212, 212, 202);
+    text-shadow: var(--textshadow);
+}
+
+.form {
+    margin-top: 20px;
+}

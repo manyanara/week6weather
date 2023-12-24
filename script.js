@@ -40,7 +40,7 @@ function getLongLat(name){
     }
 // fetch for weather forecase for long and lat input call function to display infor
 function getDailyForecast(lat, lon){
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=1bd37a4c5340a8132a06dfe2bcb52a94"
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=1bd37a4c5340a8132a06dfe2bcb52a94"
     console.log(apiUrl)
     fetch(apiUrl).then(function(response){
         response.json().then(function(data){
@@ -59,7 +59,7 @@ function getDailyForecast(lat, lon){
 }
 
 function getWeeklyForecast(lat, lon){
-    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=1bd37a4c5340a8132a06dfe2bcb52a94"
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=1bd37a4c5340a8132a06dfe2bcb52a94"
     console.log(apiUrl)
     fetch(apiUrl).then(function(response){
         response.json().then(function(data){
@@ -81,7 +81,11 @@ function showDailyForecast(temp, humidity, wind){
     document.getElementById('showDaily').innerHTML=' ';
     var display = document.createElement('div');
     display.classList.add('dayForecast');
-    display.innerHTML=`<h1>Today's Forecast: <h1> <br> <h2>Temperature:${temp} <br> Humidity: ${humidity} <br>  Wind: ${wind}</h2>`;
+    display.innerHTML=`
+    <h1>Today's Forecast: <br> </h1>  
+    <h2>Temperature: ${temp}°F <br> 
+    Humidity: ${humidity}% <br>  
+    Wind: ${wind}mph </h2>`;
     document.getElementById('showDaily').appendChild(display)
 }
 
@@ -97,10 +101,10 @@ function showWeeklyForecast(list){
         var slice = date.slice(0, 10)
 
         article.innerHTML = 
-        `<h2> ${slice} <br>
-        Temp: ${list[i].main.temp} <br>
-        Wind: ${list[i].wind.speed} <br>
-        Humidity: ${list[i].main.humidity} <br>`
+        `<h1> ${slice} </h1> <br>
+        <h2> Temp:  ${list[i].main.temp}°F <br>
+        Wind:  ${list[i].wind.speed}mph <br>
+        Humidity:  ${list[i].main.humidity}% <br> </h2>`
         
         weeklyContainer.appendChild(div);
         div.appendChild(article)

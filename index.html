@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>Weather App</title>
 </head>
-<body>
-    <header class="top">
+<body class="body">
+    <div class="top">
+    <header >
         <h1> Local Weather at Your Fingertips</h1>
     </header>
-    <aside class="top">
+    <aside class="form">
         <form id="location">
         <label for="cityName">City:</label><br>
         <input type="text" id="cityName"><br>
@@ -22,9 +26,9 @@
         <button id="foreign">Not in US?</button><br> -->
         <button id="submit">Submit</button>
     </form> 
-    </aside>
+    </aside></div>
    
-    <main class="body">
+    <main >
         <div class="card" id="showDaily">
         </div>
 
