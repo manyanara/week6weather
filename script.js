@@ -15,7 +15,10 @@ var formSubmitHandler = function(event){
         getLongLat(location);
     }
     else {
-        //error message
+        document.getElementById('showDaily').innerHTML=' ';
+        var display = document.createElement('div');
+        display.classList.add('dayForecast');
+        display.innerHTML= "<h1> Please Enter A City Name </h1>"
     }
 }
 // function to display city names from local storage 
@@ -38,6 +41,7 @@ function getLongLat(name){
         }
       })
     }
+
 // fetch for weather forecase for long and lat input call function to display infor
 function getDailyForecast(lat, lon){
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=1bd37a4c5340a8132a06dfe2bcb52a94"
@@ -47,11 +51,11 @@ function getDailyForecast(lat, lon){
             //get temp humidity and wind 
             console.log(data)
             if (!data){
-                //error
+                
                 console.log('error')
                
             } else{
-             showDailyForecast(data.main.temp, data.main.humidity, data.wind.speed);
+             showDailyForecast(data.main.temp, data.main.humidity, data.wind.speed, data.weather[0].main);
             }
             
         })
@@ -73,35 +77,39 @@ function getWeeklyForecast(lat, lon){
         })
     })
 }
-// weekly forecast will require a forloop for 5 days
+
 // function to display forecast
-function showDailyForecast(temp, humidity, wind){
+function showDailyForecast(temp, humidity, wind, desc){
     // console.log(temp, humidity, wind)
     
     document.getElementById('showDaily').innerHTML=' ';
     var display = document.createElement('div');
     display.classList.add('dayForecast');
     display.innerHTML=`
-    <h1>Today's Forecast: <br> </h1>  
+    <h1>Today's Forecast: </h1> <br> 
+    <h3> ${desc} </h3> <br> 
     <h2>Temperature: ${temp}°F <br> 
     Humidity: ${humidity}% <br>  
     Wind: ${wind}mph </h2>`;
+
     document.getElementById('showDaily').appendChild(display)
 }
 
 function showWeeklyForecast(list){
     var weeklyContainer = document.getElementById('showWeekly');
     weeklyContainer.innerHTML = " "
-    console.log(list[0].main.temp, list[0].dt_txt, list[0].wind.speed, list[0].main.humidity)
+    // console.log(list[0].main.temp, list[0].dt_txt, list[0].wind.speed, list[0].main.humidity, list[3].weather[0].main)
     for (let i=8; i<70; i+= 8){
         var div = document.createElement('div')
         var article = document.createElement('article');
         article.classList.add('weekForecast');
+       
         var date = list[i].dt_txt;
         var slice = date.slice(0, 10)
 
         article.innerHTML = 
         `<h1> ${slice} </h1> <br>
+        <h3> ${list[i].weather[0].main} </h3> <br>
         <h2> Temp:  ${list[i].main.temp}°F <br>
         Wind:  ${list[i].wind.speed}mph <br>
         Humidity:  ${list[i].main.humidity}% <br> </h2>`
@@ -111,8 +119,5 @@ function showWeeklyForecast(list){
     }
 }
 
-// //if check box delete state and add country code
-// document.querySelector('#foreign').addEventListener('click', function(){
-//     stateInputEl.remove();
-// })
+
 document.querySelector('#location').addEventListener("submit", formSubmitHandler);
