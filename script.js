@@ -13,6 +13,7 @@ var formSubmitHandler = function(event){
         // start fetch for cityname.lon and cityname.lat
         // add city to local storage
         getLongLat(location);
+        localStore(location);
     }
     else {
         document.getElementById('showDaily').innerHTML=' ';
@@ -22,9 +23,36 @@ var formSubmitHandler = function(event){
     }
 }
 // function to display city names from local storage 
+
+function localStore(city){
+    
+    localStorage.setItem("city", JSON.stringify(city));
+    let cityname = localStorage.getItem("city")
+    if (cityname){
+        cityname = JSON.parse(cityName)
+    } else {
+        cityname = [];
+    }
+    
+    let newCity = city;
+    cityname.push(newCity);
+    window.localStorage.setItem("city", JSON.stringify(cityname));
+    
+    displayLocalStore();
+}
+
+function displayLocalStore(){
+    var displayCell = document.getElementById('showLocalStore');
+
+    var citydisplay = document.createElement('div')
+    citydisplay.className.add('localStore')
+
+    var city = localStorage.getItem("city")
+    citydisplay.innerHTML=`<p> ${city} </p>`
+
+    displayCell.appendChild(citydisplay)
+}; 
 //fetch for city long and lat 
-
-
 function getLongLat(name){
     // var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=1bd37a4c5340a8132a06dfe2bcb52a94"
     var apiUrl= "https://api.openweathermap.org/data/2.5/weather?q=" + name + "&appid=" + apiKey
